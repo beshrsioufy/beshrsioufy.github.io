@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}*,*::before,*::after{box-sizing:border-box}</style>
+<title>Beshr Alsioufy</title>
+<meta name="description" content="ENG 220 e-portfolio of Mohamad Beshr Alsioufy, Computer Engineering student at Hamad Bin Khalifa University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap">
+<style>
+:root{
+  /* Layout: a centered masthead with tabs; each tab is its own page built from flat color squares and isometric cube icons */
+  --paper:#FBFBF9; --ink:#202020; --ink-2:#575754; --ink-3:#8C8C87; --line:#E4E4DF; --panel:#FFFFFF;
+  --cube:#141414;
+  --sky:#A9C6DD; --coral:#EC7A57; --sand:#EBB74E; --sea:#7FC4B3; --lilac:#BDB1DE; --pistachio:#C6D59B; --rose:#E9A3A0;
+  --font:"Jost","Futura","Century Gothic","Avenir Next",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --wrap:1120px; --gap:clamp(16px,2.6vw,30px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#1B1C1D; --ink:#EDEDEA; --ink-2:#BDBDB7; --ink-3:#8C8C86; --line:#33342F; --panel:#242527; color-scheme:dark } }
+:root[data-theme="dark"]{ --paper:#1B1C1D; --ink:#EDEDEA; --ink-2:#BDBDB7; --ink-3:#8C8C86; --line:#33342F; --panel:#242527; color-scheme:dark }
+
+[hidden]{ display:none !important }
+body{ background:var(--paper); color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.6; font-weight:400;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility }
+.site{ padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 36px }
+.wrap{ max-width:var(--wrap); margin-inline:auto }
+a{ color:inherit }
+:focus-visible{ outline:3px solid var(--ink); outline-offset:4px }
+h1,h2,h3,h4{ text-wrap:balance; margin:0 }
+p{ margin:0 }
+
+/* masthead + tabs */
+.masthead{ text-align:center; padding-block:30px 8px }
+.name{ font-size:clamp(30px,5.4vw,52px); font-weight:500; letter-spacing:.035em; text-transform:uppercase; line-height:1.05 }
+.name a{ text-decoration:none }
+.tagline{ margin-top:14px; font-size:clamp(11.5px,1.4vw,14px); letter-spacing:.34em; color:var(--ink-3) }
+.tabs{ display:flex; justify-content:center; gap:4px clamp(18px,4vw,46px); flex-wrap:wrap; margin-top:30px; padding-bottom:0; border-bottom:1px solid var(--line) }
+.tabs a{ position:relative; font-size:13px; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; color:var(--ink-3); padding:12px 2px 16px; transition:color .2s }
+.tabs a:hover{ color:var(--ink) }
+.tabs a::after{ content:""; position:absolute; left:50%; bottom:-1px; width:100%; height:3px; background:var(--tab, var(--ink)); transform:translateX(-50%) scaleX(0); transition:transform .3s cubic-bezier(.3,.7,.2,1) }
+.tabs a[aria-current="page"]{ color:var(--ink) }
+.tabs a[aria-current="page"]::after{ transform:translateX(-50%) scaleX(1) }
+
+.page{ padding-top:clamp(36px,6vw,64px) }
+.sec-head{ text-align:center; font-size:clamp(17px,2vw,20px); font-weight:400; letter-spacing:.3em; text-transform:uppercase }
+.sec-lead{ text-align:center; color:var(--ink-2); max-width:54ch; margin:12px auto 0 }
+
+/* home hero */
+.hero{ display:grid; grid-template-columns:5fr 7fr; gap:clamp(28px,5vw,72px); align-items:center }
+.portrait{ position:relative; margin:0 18px 18px 0; isolation:isolate }
+.portrait::before{ content:""; position:absolute; inset:18px -18px -18px 18px; background:var(--sky); z-index:-1 }
+.portrait img{ display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; background:var(--line) }
+.intro{ min-width:0 }
+.hello{ font-size:clamp(34px,4.6vw,54px); font-weight:400; line-height:1.05; letter-spacing:-.005em }
+.role{ font-size:clamp(17px,1.8vw,20px); color:var(--ink); margin-top:12px; font-weight:500 }
+.intro p.body{ color:var(--ink-2); font-size:clamp(16px,1.55vw,17.5px); max-width:56ch; margin-top:16px }
+.details{ margin:26px 0 0; padding:18px 0 0; border-top:1px solid var(--line); display:grid; grid-template-columns:auto 1fr; gap:8px 22px; font-size:15.5px; max-width:520px }
+.details dt{ color:var(--ink-3); letter-spacing:.12em; text-transform:uppercase; font-size:12.5px; padding-top:2px }
+.details dd{ margin:0; min-width:0; overflow-wrap:anywhere; display:flex; align-items:center; gap:12px; flex-wrap:wrap }
+.details a{ text-underline-offset:3px }
+.mini-copy{ font:inherit; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); background:none; border:0; padding:2px 0; cursor:pointer; text-decoration:underline; text-underline-offset:3px }
+.mini-copy:hover{ color:var(--ink) }
+.actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:28px }
+.btn{ display:inline-flex; align-items:center; font:inherit; font-size:13px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;
+  padding:13px 22px; border:1.5px solid var(--ink); background:transparent; color:var(--ink); cursor:pointer; transition:background .2s, color .2s }
+.btn:hover{ background:var(--ink); color:var(--paper) }
+.btn.solid{ background:var(--ink); color:var(--paper) }
+.btn.solid:hover{ background:transparent; color:var(--ink) }
+
+.home-block{ margin-top:clamp(70px,9vw,110px) }
+.block-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; padding-bottom:16px; margin-bottom:26px; border-bottom:1px solid var(--line) }
+.block-head h2{ font-size:clamp(16px,1.8vw,18px); font-weight:400; letter-spacing:.28em; text-transform:uppercase }
+.block-head a, .block-head span{ font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); text-decoration:none }
+.block-head a:hover{ color:var(--ink) }
+
+/* tiles */
+.tiles{ list-style:none; margin:0; padding:0 }
+.tiles.strip{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:var(--gap) }
+.tiles.grid{ display:flex; flex-wrap:wrap; justify-content:center; gap:clamp(34px,4.4vw,48px) var(--gap); margin-top:44px }
+.tiles.grid .tile-item{ flex:0 0 calc((100% - 2 * var(--gap)) / 3) }
+.tile-link{ display:block; text-decoration:none; color:var(--ink) }
+.tile{ display:grid; place-items:center; aspect-ratio:1; max-width:100%; background:var(--c); transition:filter .3s }
+.icon-wrap{ display:block; width:54%; animation:rise .8s cubic-bezier(.2,.7,.2,1) both; animation-delay:calc(var(--i) * 90ms + 100ms) }
+.cube{ display:block; width:100%; height:auto; color:var(--cube); overflow:visible; transition:transform .4s cubic-bezier(.3,.7,.2,1) }
+.tile-link:hover .tile{ filter:saturate(1.12) brightness(.97) }
+.tile-link:hover .cube{ transform:translateY(-7%) }
+.cap{ display:block; text-align:center; margin-top:16px }
+.cap-title{ display:block; font-size:14px; letter-spacing:.14em; text-transform:uppercase }
+.cap-sub{ display:block; font-size:14px; color:var(--ink-3); margin-top:2px }
+.strip .cap{ margin-top:12px }
+.strip .cap-title{ font-size:12.5px; letter-spacing:.11em }
+.strip .cap-sub{ font-size:13px }
+@keyframes rise{ from{ transform:translateY(16%); opacity:0 } to{ transform:none; opacity:1 } }
+
+/* coursework */
+.courses{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:var(--gap) }
+.courses li{ display:grid; gap:6px; align-content:start; padding-top:14px; border-top:4px solid var(--c) }
+.code{ font-weight:500; font-size:19px; letter-spacing:.03em; white-space:nowrap }
+.ct{ color:var(--ink-2); font-size:15px; line-height:1.45; min-width:0 }
+.sq{ display:none }
+
+/* page bands (résumé, contact, projects) */
+.band{ background:var(--c); display:grid; place-items:center; height:clamp(240px,34vw,400px) }
+.band .cube{ width:clamp(170px,22vw,260px) }
+.band.short{ height:clamp(190px,24vw,280px) }
+.band.short .cube{ width:clamp(130px,15vw,180px) }
+.p-head{ text-align:center; padding-block:42px 6px }
+.p-title{ font-size:clamp(22px,3vw,30px); font-weight:400; letter-spacing:.24em; text-transform:uppercase }
+.p-sub{ font-size:clamp(18px,2.2vw,22px); margin-top:10px; color:var(--ink-2) }
+.p-meta{ margin-top:6px; font-size:14px; letter-spacing:.12em; color:var(--ink-3) }
+
+/* résumé */
+.resume{ max-width:900px; margin:40px auto 0; display:grid; gap:clamp(40px,5vw,56px) }
+.r-head{ display:flex; align-items:center; gap:12px; font-size:14px; font-weight:400; letter-spacing:.22em; text-transform:uppercase; padding-bottom:12px; border-bottom:1px solid var(--line); margin-bottom:6px }
+.r-head .sq{ display:block; width:12px; height:12px; background:var(--c) }
+.entry{ display:grid; grid-template-columns:170px minmax(0,1fr); gap:4px 28px; padding:18px 0; border-bottom:1px solid var(--line) }
+.entry:last-child{ border-bottom:0 }
+.entry .date{ font-size:14.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; padding-top:3px }
+.entry h4{ font-size:18.5px; font-weight:500; line-height:1.35 }
+.org{ margin-top:2px; color:var(--ink-2); font-size:15.5px }
+.entry ul{ margin:10px 0 0; padding:0; list-style:none; display:grid; gap:6px }
+.entry li{ position:relative; padding-left:20px; font-size:16px; color:var(--ink-2) }
+.entry li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; background:var(--c) }
+.skill-v{ color:var(--ink-2) }
+.r-foot{ text-align:center; margin-top:46px }
+
+/* contact */
+.contact-body{ max-width:760px; margin:36px auto 0; text-align:center }
+.email{ display:block; font-size:clamp(22px,4.4vw,40px); font-weight:400; margin:6px 0 26px; user-select:all; overflow-wrap:anywhere }
+.contact-body .actions{ justify-content:center }
+.contact-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--gap); margin-top:56px; text-align:left }
+.contact-grid div{ border-top:4px solid var(--c); padding-top:14px; min-width:0 }
+.contact-grid h3{ font-size:12.5px; font-weight:400; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3) }
+.contact-grid p{ margin-top:6px; overflow-wrap:anywhere }
+
+/* project pages */
+.back{ display:inline-block; font-size:13px; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; color:var(--ink-3); margin-bottom:18px }
+.back:hover{ color:var(--ink) }
+.prose{ max-width:690px; margin:30px auto 0; min-width:0 }
+.prose p{ margin:0 0 18px; font-size:18px; line-height:1.68 }
+.prose h3{ font-size:22px; font-weight:500; margin:40px 0 12px }
+.prose h4{ font-size:19px; font-weight:500; margin:0 0 10px; display:flex; align-items:center; gap:14px }
+.prose code{ font-family:var(--mono); font-size:.86em; background:var(--panel); border:1px solid var(--line); padding:1px 6px; overflow-wrap:anywhere }
+.fig{ margin:30px 0 34px; background:#FFFFFF; border:1px solid var(--line); padding:clamp(10px,2vw,22px) }
+.fig img{ display:block; width:100%; height:auto }
+.fig figcaption{ font-size:14px; color:#6A6A66; text-align:center; margin-top:10px }
+.ai-note{ margin:34px 0 0; padding:18px 20px; background:color-mix(in srgb, var(--c) 22%, transparent); font-size:16px }
+.needs{ margin:0 0 18px; padding-left:22px; font-size:18px }
+.needs li{ margin-bottom:4px }
+.steps{ list-style:none; margin:0; padding:0; display:grid; gap:30px }
+.step-n{ flex:none; display:grid; place-items:center; width:38px; height:38px; background:var(--c); color:var(--cube); font-weight:500; font-size:18px }
+.steps li > p{ padding-left:52px }
+.callout{ font-size:16px !important; padding:12px 16px; background:var(--panel); border:1px solid var(--line); margin-left:52px }
+.callout.caution{ border-color:color-mix(in srgb, var(--coral) 70%, var(--line)); background:color-mix(in srgb, var(--coral) 12%, var(--panel)) }
+.steps li > p.callout{ padding-left:16px }
+.video-slot{ aspect-ratio:16/9; max-width:100%; background:color-mix(in srgb, var(--c) 30%, var(--panel)); border:1px solid var(--line); display:grid; place-items:center; align-content:center; gap:14px; margin:0 0 26px; color:var(--ink-2); text-align:center; padding:16px }
+.video-slot svg{ width:64px; height:64px }
+.pending{ border:1.5px dashed var(--line); padding:18px 20px; color:var(--ink-3); font-size:16px !important }
+.wide{ max-width:980px; margin:26px auto 0 }
+.deck-stage{ background:var(--panel); border:1px solid var(--line); aspect-ratio:16/9; max-width:100%; overflow:hidden; touch-action:pan-y }
+.deck-img{ display:block; width:100%; height:auto; transition:opacity .18s }
+.deck-img.swap{ opacity:.35 }
+.deck-bar{ display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px; margin-top:14px }
+.deck-btn{ width:46px; height:46px; display:grid; place-items:center; border:1.5px solid var(--ink); background:transparent; color:var(--ink); cursor:pointer; transition:background .2s, color .2s }
+.deck-btn svg{ width:20px; height:20px }
+.deck-btn:hover:not(:disabled){ background:var(--ink); color:var(--paper) }
+.deck-btn:disabled{ opacity:.28; cursor:default }
+.deck-count{ text-align:center; min-width:0 }
+.deck-title{ display:block; font-size:16px; font-weight:500 }
+.deck-n{ display:block; font-size:13px; letter-spacing:.12em; color:var(--ink-3); font-variant-numeric:tabular-nums }
+.narration{ margin:16px 0 0; padding:16px 20px; background:color-mix(in srgb, var(--c) 20%, transparent) }
+.narration figcaption{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2) }
+.narration p{ margin-top:6px; font-size:16.5px; line-height:1.6 }
+.deck-thumbs{ list-style:none; margin:16px 0 0; padding:0; display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:8px }
+.thumb{ display:block; width:100%; padding:0; border:2px solid transparent; background:var(--panel); cursor:pointer; opacity:.6; transition:opacity .2s, border-color .2s }
+.thumb img{ display:block; width:100%; height:auto }
+.thumb:hover{ opacity:1 }
+.thumb[aria-current="true"]{ border-color:var(--ink); opacity:1 }
+.learn{ list-style:none; margin:0 0 18px; padding:0; display:grid; gap:12px }
+.learn li{ position:relative; padding-left:24px; font-size:18px; line-height:1.6 }
+.learn li::before{ content:""; position:absolute; left:2px; top:.6em; width:9px; height:9px; background:var(--c) }
+.learn strong{ font-weight:500 }
+.reflection{ margin-top:46px; padding-top:6px; border-top:1px solid var(--line) }
+.p-nav{ display:grid; grid-template-columns:1fr auto 1fr; align-items:end; gap:16px; max-width:900px; margin:70px auto 0; padding-top:24px; border-top:1px solid var(--line) }
+.p-nav a{ text-decoration:none; font-size:15px }
+.p-nav a span{ display:block; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3) }
+.p-nav a:hover{ text-decoration:underline; text-underline-offset:4px }
+.p-next{ text-align:right }
+.p-all{ font-size:13px !important; letter-spacing:.14em; text-transform:uppercase }
+
+.foot{ text-align:center; color:var(--ink-3); font-size:13px; letter-spacing:.06em; margin-top:clamp(70px,9vw,110px); padding-top:22px; border-top:1px solid var(--line) }
+
+/* view transitions */
+::view-transition-group(hero-bg), ::view-transition-group(hero-icon){ animation-duration:.55s; animation-timing-function:cubic-bezier(.3,.7,.2,1) }
+::view-transition-old(hero-bg), ::view-transition-new(hero-bg){ width:100%; height:100%; object-fit:fill }
+::view-transition-old(root), ::view-transition-new(root){ animation-duration:.28s }
+
+@media (max-width: 900px){
+  .hero{ grid-template-columns:1fr 1fr }
+  .tiles.grid .tile-item{ flex-basis:calc((100% - var(--gap)) / 2) }
+  .courses{ grid-template-columns:1fr; gap:0 }
+  .courses li{ grid-template-columns:14px 100px 1fr; align-items:baseline; gap:14px; padding:13px 0; border-top:0; border-bottom:1px solid var(--line) }
+  .courses .sq{ display:block; width:12px; height:12px; background:var(--c); align-self:center }
+  .code{ font-size:17px }
+}
+@media (max-width: 680px){
+  .hero{ grid-template-columns:1fr }
+  .portrait{ max-width:420px }
+  .tiles.strip{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px; gap:16px }
+  .tiles.strip .tile-item{ flex:0 0 44%; scroll-snap-align:start }
+  .tiles.grid .tile-item{ flex-basis:100%; max-width:420px }
+  .entry{ grid-template-columns:1fr; gap:4px }
+  .entry .date{ padding-top:0 }
+  .contact-grid{ grid-template-columns:1fr }
+  .steps li > p{ padding-left:0 }
+  .callout{ margin-left:0 }
+  .p-nav{ grid-template-columns:1fr 1fr }
+  .deck-thumbs{ grid-template-columns:repeat(5,minmax(0,1fr)) }
+  .deck-title{ font-size:14.5px }
+  .p-all{ display:none }
+  .courses li{ grid-template-columns:14px 86px 1fr; gap:10px }
+  .tabs a{ font-size:12px; letter-spacing:.12em }
+  .tagline{ letter-spacing:.18em; font-size:11.5px }
+}
+@media (prefers-reduced-motion: reduce){
+  .icon-wrap{ animation:none }
+  .cube,.tile,.btn,.tabs a::after{ transition:none }
+}
+</style>
+</head>
+<body>
+
+<div class="site">
+  <header class="masthead wrap">
+    <h1 class="name"><a href="#home">Beshr Alsioufy</a></h1>
+    <p class="tagline">Computer Engineering &nbsp;|&nbsp; AI Research &nbsp;|&nbsp; Debate</p>
+    <nav class="tabs" aria-label="Pages">
+      <a href="#home" style="--tab:var(--sky)">Home</a>
+      <a href="#projects" style="--tab:var(--coral)">Projects</a>
+      <a href="#resume" style="--tab:var(--lilac)">Résumé</a>
+      <a href="#contact" style="--tab:var(--rose)">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="page home" data-page="home" aria-label="Home">
+      <div class="hero">
+        <figure class="portrait">
+          <img src="me.jpg" width="1100" height="1100" alt="Beshr Alsioufy smiling outdoors on a university campus, wearing a dark button-up shirt over a white t-shirt.">
+        </figure>
+        <div class="intro">
+          <h2 class="hello">Hi, I&rsquo;m Beshr.</h2>
+          <p class="role">Computer Engineering (Honors) student at Hamad Bin Khalifa University</p>
+          <p class="body">I&rsquo;m in my third year at HBKU, and most of my work sits between AI research and software that people use every day. At Sina Labs I benchmarked Arabic language models on H200 GPUs, and at HBKU&rsquo;s Health and Counselling Center I helped launch Enta Bikhair, a mental health screening tool used by more than 500 students.</p>
+          <p class="body">Outside the lab I debate. I led HBKU&rsquo;s Arabic Debate Club and won 3rd Best Speaker at the National Universities Debating Championship. This site collects my ENG&nbsp;220 work from Fall 2026.</p>
+          <dl class="details">
+            <dt>Email</dt><dd><span id="home-email">moal69107@hbku.edu.qa</span><button class="mini-copy" type="button" data-copy="moal69107@hbku.edu.qa" data-target="home-email">Copy</button></dd>
+            <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/beshr-alsioufy" target="_blank" rel="noopener">linkedin.com/in/beshr-alsioufy</a></dd>
+            <dt>Based in</dt><dd>Doha, Qatar</dd>
+          </dl>
+          <div class="actions">
+            <a class="btn solid" href="#projects">View projects</a>
+            <a class="btn" href="#resume">Résumé</a>
+            <a class="btn" href="https://www.linkedin.com/in/beshr-alsioufy" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <section class="home-block" aria-labelledby="hp-h">
+        <div class="block-head"><h2 id="hp-h">Projects</h2><a href="#projects">See all</a></div>
+        <ul class="tiles strip">
+<li class="tile-item small">
+  <a class="tile-link" href="#mechanism" style="--c:var(--sky); --i:0">
+    <span class="tile" data-tile="mechanism"><span class="icon-wrap"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a microSD card on its face" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M33 12 H80 V88 H20 V25 Z" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<g fill="currentColor" stroke="none"><rect x="25" y="28" width="5" height="9"/><rect x="34" y="18" width="5" height="19"/><rect x="43" y="18" width="5" height="19"/><rect x="52" y="18" width="5" height="19"/><rect x="61" y="18" width="5" height="19"/><rect x="70" y="18" width="5" height="19"/></g></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Mechanism Description</span><span class="cap-sub">MicroSD cards</span></span>
+  </a>
+</li><li class="tile-item small">
+  <a class="tile-link" href="#instructions" style="--c:var(--coral); --i:1">
+    <span class="tile" data-tile="instructions"><span class="icon-wrap"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a Git branch and a terminal prompt" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M30 14 V86 M30 32 C30 50 66 40 66 62" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<g fill="currentColor" stroke="none"><circle cx="30" cy="20" r="7"/><circle cx="30" cy="50" r="7"/><circle cx="30" cy="80" r="7"/></g>
+<circle cx="66" cy="70" r="7.5" style="fill:var(--c)" stroke-width="4" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><polyline points="22,34 42,48 22,62" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/><path d="M50 66 H76" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Written Instructions</span><span class="cap-sub">Initializing a Git repository</span></span>
+  </a>
+</li><li class="tile-item small">
+  <a class="tile-link" href="#video" style="--c:var(--sand); --i:2">
+    <span class="tile" data-tile="video"><span class="icon-wrap"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with an AND gate symbol and a play button" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M28 28 H50 A22 22 0 0 1 50 72 H28 Z M10 40 H28 M10 60 H28 M72 50 H90" stroke-width="5" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><polygon points="32,28 72,50 32,72" style="fill:var(--c)" stroke="none"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Instructional Video</span><span class="cap-sub">An AND gate on an Arduino Uno</span></span>
+  </a>
+</li><li class="tile-item small">
+  <a class="tile-link" href="#proposal" style="--c:var(--sea); --i:3">
+    <span class="tile" data-tile="proposal"><span class="icon-wrap"><svg class="cube" viewBox="25 23 150 150" role="img" aria-label="Open cube with an arrow rising out of it" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"><rect x="22" y="22" width="56" height="56" fill="currentColor" stroke="none"/></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+<path d="M100 92 V16" stroke-width="8"/><polyline points="80,36 100,14 120,36" stroke-width="8"/>
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Innovation Proposal</span><span class="cap-sub">Coming in Week 14</span></span>
+  </a>
+</li><li class="tile-item small">
+  <a class="tile-link" href="#events" style="--c:var(--pistachio); --i:4">
+    <span class="tile" data-tile="events"><span class="icon-wrap"><svg class="cube" viewBox="25 16 150 150" role="img" aria-label="Cube used as a podium with a microphone" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"><circle cx="50" cy="50" r="17" fill="currentColor" stroke="none"/></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+<path d="M100 89 V44" stroke-width="6"/><path d="M80 22 Q80 46 100 46 Q120 46 120 22" stroke-width="5"/>
+<rect x="88" y="-4" width="24" height="38" rx="12" fill="currentColor" stroke="none"/>
+<path d="M93 6 H107 M93 14 H107 M93 22 H107" style="stroke:var(--c)" stroke-width="3"/>
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Events</span><span class="cap-sub">Consulting workshop</span></span>
+  </a>
+</li>
+        </ul>
+      </section>
+
+      <section class="home-block" aria-labelledby="cw-h">
+        <div class="block-head"><h2 id="cw-h">Coursework</h2><span>Fall 2026</span></div>
+        <ul class="courses"><li style="--c:var(--sky)"><span class="sq"></span><span class="code">ENG 220</span><span class="ct">Technical writing and communication projects</span></li><li style="--c:var(--coral)"><span class="sq"></span><span class="code">CPEN 213</span><span class="ct">Introduction to Computer Systems</span></li><li style="--c:var(--sand)"><span class="sq"></span><span class="code">CPEN 217</span><span class="ct">Probability Theory and Random Processes</span></li><li style="--c:var(--sea)"><span class="sq"></span><span class="code">ECEN 314</span><span class="ct">Signals and Systems</span></li><li style="--c:var(--lilac)"><span class="sq"></span><span class="code">ECEN 325</span><span class="ct">Electronics</span></li></ul>
+      </section>
+    </section>
+
+    <section class="page" data-page="projects" aria-labelledby="pr-h" hidden>
+      <h2 class="sec-head" id="pr-h">Projects</h2>
+      <p class="sec-lead">Final drafts from ENG&nbsp;220. Select a square to open a project.</p>
+      <ul class="tiles grid">
+<li class="tile-item ">
+  <a class="tile-link" href="#mechanism" style="--c:var(--sky); --i:0">
+    <span class="tile" data-tile="mechanism"><span class="icon-wrap"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a microSD card on its face" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M33 12 H80 V88 H20 V25 Z" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<g fill="currentColor" stroke="none"><rect x="25" y="28" width="5" height="9"/><rect x="34" y="18" width="5" height="19"/><rect x="43" y="18" width="5" height="19"/><rect x="52" y="18" width="5" height="19"/><rect x="61" y="18" width="5" height="19"/><rect x="70" y="18" width="5" height="19"/></g></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Mechanism Description</span><span class="cap-sub">MicroSD cards</span></span>
+  </a>
+</li><li class="tile-item ">
+  <a class="tile-link" href="#instructions" style="--c:var(--coral); --i:1">
+    <span class="tile" data-tile="instructions"><span class="icon-wrap"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a Git branch and a terminal prompt" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M30 14 V86 M30 32 C30 50 66 40 66 62" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<g fill="currentColor" stroke="none"><circle cx="30" cy="20" r="7"/><circle cx="30" cy="50" r="7"/><circle cx="30" cy="80" r="7"/></g>
+<circle cx="66" cy="70" r="7.5" style="fill:var(--c)" stroke-width="4" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><polyline points="22,34 42,48 22,62" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/><path d="M50 66 H76" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Written Instructions</span><span class="cap-sub">Initializing a Git repository</span></span>
+  </a>
+</li><li class="tile-item ">
+  <a class="tile-link" href="#video" style="--c:var(--sand); --i:2">
+    <span class="tile" data-tile="video"><span class="icon-wrap"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with an AND gate symbol and a play button" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M28 28 H50 A22 22 0 0 1 50 72 H28 Z M10 40 H28 M10 60 H28 M72 50 H90" stroke-width="5" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><polygon points="32,28 72,50 32,72" style="fill:var(--c)" stroke="none"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Instructional Video</span><span class="cap-sub">An AND gate on an Arduino Uno</span></span>
+  </a>
+</li><li class="tile-item ">
+  <a class="tile-link" href="#proposal" style="--c:var(--sea); --i:3">
+    <span class="tile" data-tile="proposal"><span class="icon-wrap"><svg class="cube" viewBox="25 23 150 150" role="img" aria-label="Open cube with an arrow rising out of it" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"><rect x="22" y="22" width="56" height="56" fill="currentColor" stroke="none"/></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+<path d="M100 92 V16" stroke-width="8"/><polyline points="80,36 100,14 120,36" stroke-width="8"/>
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Innovation Proposal</span><span class="cap-sub">Coming in Week 14</span></span>
+  </a>
+</li><li class="tile-item ">
+  <a class="tile-link" href="#events" style="--c:var(--pistachio); --i:4">
+    <span class="tile" data-tile="events"><span class="icon-wrap"><svg class="cube" viewBox="25 16 150 150" role="img" aria-label="Cube used as a podium with a microphone" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"><circle cx="50" cy="50" r="17" fill="currentColor" stroke="none"/></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+<path d="M100 89 V44" stroke-width="6"/><path d="M80 22 Q80 46 100 46 Q120 46 120 22" stroke-width="5"/>
+<rect x="88" y="-4" width="24" height="38" rx="12" fill="currentColor" stroke="none"/>
+<path d="M93 6 H107 M93 14 H107 M93 22 H107" style="stroke:var(--c)" stroke-width="3"/>
+</svg></span></span>
+    <span class="cap"><span class="cap-title">Events</span><span class="cap-sub">Consulting workshop</span></span>
+  </a>
+</li>
+      </ul>
+    </section>
+
+    <section class="page" data-page="resume" style="--c:var(--lilac)" aria-labelledby="rs-h" hidden>
+      <div class="band short"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a résumé page on its face" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M22 12 H62 L78 28 V90 H22 Z M62 12 V28 H78" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<path d="M32 44 H68 M32 58 H68 M32 72 H56" stroke-width="5" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><path d="M24 36 H72 M24 52 H62" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></div>
+      <header class="p-head">
+        <h2 class="p-title" id="rs-h">Résumé</h2>
+        <p class="p-sub">Mohamad Beshr Alsioufy</p>
+        <p class="p-meta">moal69107@hbku.edu.qa &nbsp;|&nbsp; Doha, Qatar</p>
+      </header>
+      <div class="resume">
+<section class="r-sec" style="--c:var(--sky)"><h3 class="r-head"><span class="sq"></span>Education</h3><div class="entry"><p class="date">Expected May 2028</p><div class="entry-main"><h4>B.S. in Computer Engineering (Honors)</h4><p class="org">Hamad Bin Khalifa University, College of Science and Engineering | Doha, Qatar</p></div></div></section>
+<section class="r-sec" style="--c:var(--coral)"><h3 class="r-head"><span class="sq"></span>Research</h3><div class="entry"><p class="date">2025</p><div class="entry-main"><h4>NLP Benchmarking &amp; Model Evaluation</h4><p class="org">Sina Labs, Birzeit University</p><ul><li>Benchmarked NeoAraBERT on 16 tasks and 10 models (~150 runs) on H200 GPUs, reproducing within 0.05.</li><li>Built a fault-tolerant SLURM pipeline, fixing CUDA/PyTorch conflicts and adding evaluation metrics.</li><li>Identified a ~6-point NER score discrepancy and a dialect-vs-MSA specialization trade-off across 15 tasks.</li></ul></div></div><div class="entry"><p class="date">2025</p><div class="entry-main"><h4>Gradient-Based Neural Network Pruning</h4><p class="org">Hamad Bin Khalifa University, Qatar Foundation</p><ul><li>Developed gradient-based weight pruning from the monotonicity and smoothness of gradient trajectories.</li><li>Designed an O(T)-time, constant-memory algorithm from incremental gradient statistics and curvature.</li><li>Implemented neuron-level structured pruning when &ge;80% of a neuron&rsquo;s weights were pruned.</li></ul></div></div><div class="entry"><p class="date">2024&ndash;2025</p><div class="entry-main"><h4>Speech &amp; Argument Mining</h4><p class="org">QatarDebate Center, Qatar Foundation</p><ul><li>Managed and preprocessed large Arabic debate datasets for computational modeling and analysis.</li><li>Converted 200+ hours of debate audio into research-ready text with 95%+ accuracy.</li></ul></div></div></section>
+<section class="r-sec" style="--c:var(--sand)"><h3 class="r-head"><span class="sq"></span>Experience</h3><div class="entry"><p class="date">Sep 2024&ndash;Present</p><div class="entry-main"><h4>Admin Assistant, Health and Counselling Center</h4><p class="org">Hamad Bin Khalifa University, Qatar Foundation | Part-time</p><ul><li>Co-launched Enta Bikhair, an AI-powered mental health screening tool used by 500+ students at HBKU.</li><li>Worked across the stack (UI/UX, database, backend) on a tool piloted for expansion across the GCC.</li><li>Coordinated logistics and outreach for 10+ wellness initiatives, managing data collection and reporting.</li></ul></div></div><div class="entry"><p class="date">Jun&ndash;Aug 2025</p><div class="entry-main"><h4>Operations Assistant, Documentation Systems</h4><p class="org">CamelCode Academy | Part-time</p><ul><li>Redesigned and managed the internal documentation system to improve accessibility and collaboration.</li><li>Implemented structured processes for archiving and retrieving information across the team.</li></ul></div></div><div class="entry"><p class="date">Jan 2024&ndash;Apr 2025</p><div class="entry-main"><h4>Program and Events Coordinator</h4><p class="org">Qatar Debate Center, Qatar Foundation | Part-time</p><ul><li>Coordinated 5+ international conferences and debate events, handling logistics and program flow.</li><li>Managed documentation and reporting for events and programs to support evaluation and planning.</li></ul></div></div></section>
+<section class="r-sec" style="--c:var(--sea)"><h3 class="r-head"><span class="sq"></span>Leadership</h3><div class="entry"><p class="date">Feb 2024&ndash;Present</p><div class="entry-main"><h4>Hub Coordinator</h4><p class="org">Alsharq Youth Network</p><ul><li>Organized educational events, roundtables, and workshops on youth empowerment and civic engagement.</li></ul></div></div><div class="entry"><p class="date">Sep 2024&ndash;Mar 2025</p><div class="entry-main"><h4>President, Arabic Debate Club</h4><p class="org">Hamad Bin Khalifa University</p><ul><li>Organized inter-university tournaments and coached members for national championships.</li></ul></div></div><div class="entry"><p class="date">Jan&ndash;Mar 2025</p><div class="entry-main"><h4>Treasurer, Leadership Experience Club</h4><p class="org">Texas A&amp;M University</p><ul><li>Managed budgets for TEDx, professional workshops, and student initiatives.</li></ul></div></div></section>
+<section class="r-sec" style="--c:var(--lilac)"><h3 class="r-head"><span class="sq"></span>Awards</h3><div class="entry"><p class="date">May 2025</p><div class="entry-main"><h4>President&rsquo;s List &amp; Dean&rsquo;s List</h4><p class="org">Academic excellence, Hamad Bin Khalifa University</p></div></div><div class="entry"><p class="date">Mar 2025</p><div class="entry-main"><h4>3rd Best Speaker Award</h4><p class="org">National Universities Debating Championship</p></div></div><div class="entry"><p class="date">Jan 2025</p><div class="entry-main"><h4>Woqood Scholarship</h4><p class="org">$10,000 awarded in recognition of academic excellence</p></div></div><div class="entry"><p class="date">Jun 2024</p><div class="entry-main"><h4>National Ranking</h4><p class="org">7th nationwide, Technology Track (high school)</p></div></div></section>
+<section class="r-sec" style="--c:var(--pistachio)"><h3 class="r-head"><span class="sq"></span>Skills</h3><div class="entry"><p class="date">Programming</p><div class="entry-main"><p class="skill-v">Python, SQL, C</p></div></div><div class="entry"><p class="date">Tools &amp; frameworks</p><div class="entry-main"><p class="skill-v">PyTorch, TensorFlow, Pandas, NumPy, MATLAB, R, Power BI, Git, Linux, SLURM (HPC), CUDA</p></div></div><div class="entry"><p class="date">Languages</p><div class="entry-main"><p class="skill-v">Arabic (native), English (advanced)</p></div></div></section>
+      </div>
+      <div class="r-foot"><a class="btn" href="https://www.linkedin.com/in/beshr-alsioufy" target="_blank" rel="noopener">More on LinkedIn</a></div>
+    </section>
+
+    <section class="page" data-page="contact" style="--c:var(--rose)" aria-labelledby="ct-h" hidden>
+      <div class="band short"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with an envelope on its face" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><rect x="14" y="26" width="72" height="50" stroke-width="5" vector-effect="non-scaling-stroke"/><polyline points="14,26 50,54 86,26" stroke-width="5" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><circle cx="48" cy="50" r="13" style="stroke:var(--c)" stroke-width="5" vector-effect="non-scaling-stroke"/><path d="M61 50 V58 Q61 66 70 64" style="stroke:var(--c)" stroke-width="5" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></div>
+      <header class="p-head">
+        <h2 class="p-title" id="ct-h">Contact</h2>
+        <p class="p-sub">The fastest way to reach me is email.</p>
+      </header>
+      <div class="contact-body">
+        <span class="email" id="contact-email">moal69107@hbku.edu.qa</span>
+        <div class="actions">
+          <button class="btn solid" type="button" data-copy="moal69107@hbku.edu.qa" data-target="contact-email">Copy email</button>
+          <a class="btn" href="https://www.linkedin.com/in/beshr-alsioufy" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="contact-grid">
+          <div style="--c:var(--sky)"><h3>Email</h3><p>moal69107@hbku.edu.qa</p></div>
+          <div style="--c:var(--sand)"><h3>LinkedIn</h3><p><a href="https://www.linkedin.com/in/beshr-alsioufy" target="_blank" rel="noopener">linkedin.com/in/beshr-alsioufy</a></p></div>
+          <div style="--c:var(--sea)"><h3>Based in</h3><p>Doha, Qatar</p></div>
+        </div>
+      </div>
+    </section>
+
+<section class="page project" data-page="mechanism" data-tab="projects" style="--c:var(--sky)" hidden>
+  <a class="back" href="#projects">All projects</a>
+  <div class="band" data-band="mechanism"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a microSD card on its face" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M33 12 H80 V88 H20 V25 Z" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<g fill="currentColor" stroke="none"><rect x="25" y="28" width="5" height="9"/><rect x="34" y="18" width="5" height="19"/><rect x="43" y="18" width="5" height="19"/><rect x="52" y="18" width="5" height="19"/><rect x="61" y="18" width="5" height="19"/><rect x="70" y="18" width="5" height="19"/></g></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></div>
+  <header class="p-head">
+    <h2 class="p-title">Mechanism Description</h2>
+    <p class="p-sub">MicroSD cards</p>
+    <p class="p-meta">ENG 220 | Fall 2026</p>
+  </header>
+  
+  
+  <div class="prose">
+
+<p>MicroSD cards are small chips used to read and write data on electronic devices, such as laptops, cameras, and phones. They are mainly made out of plastic, with a small amount of metal, and they come in different colors and sizes. A microSD card is very small, only about 15&nbsp;mm long, 11&nbsp;mm wide, and 1&nbsp;mm thick. It has four main parts: the index corner notch, the plastic casing, the gold contacts, and the write-protect switch, as shown in Figure&nbsp;1.</p>
+<figure class="fig">
+  <img src="mechanism-figure.jpg" width="1151" height="666" loading="lazy" alt="Diagram of a memory card with four labeled parts: index corner notch at top left, gold contacts along the top, write-protect switch on the right side, and the plastic casing.">
+  <figcaption>Figure 1. Labeled parts of the card</figcaption>
+</figure>
+<h3>Index corner notch</h3>
+<p>The index corner notch is located on the top left corner of the microSD card. Its main purpose is to help users insert the card in the correct orientation. If we look at that corner in Figure&nbsp;1, we notice that the card is chipped, so if the user attempts to insert it the wrong way, the index corner notch will prevent them from doing so. This also makes sure the gold contacts line up with the device.</p>
+<h3>Gold contacts</h3>
+<p>The gold contacts hold the functionality of the device. They are the part responsible for communicating with electronic devices to store or transfer data. They are small, flat strips lined up in a row at the top of the card. When the card is inserted, these strips touch the pins inside the device's slot. They are made out of metal covered with a thin layer of gold.</p>
+<h3>Write-protect switch</h3>
+<p>The write-protect switch is a small slider on the right side of the card, and it has a very important function. When it is turned on (simply by sliding it down), it prevents the electronic device from writing data onto the card. The data can still be read, but nothing new can be saved and nothing can be deleted. It is mainly used for security reasons.</p>
+<h3>Plastic casing</h3>
+<p>Finally, we have the plastic casing, which holds all the other parts together. It covers the memory chip inside the card and protects it from dust, water, and damage. It makes it easier for the user to hold the card and use it, as it is made out of plastic, which is very durable. It is usually black, with a label on the front.</p>
+<h3>Conclusion</h3>
+<p>Overall, the microSD card is a very helpful tool used to read and write data in so many electronic devices. It is made out of very simple and easy-to-produce components, which makes it durable and user-friendly. All four parts work together: the casing protects the card, the notch guides it into the slot, the contacts move the data, and the switch keeps the data safe.</p>
+<aside class="ai-note"><strong>AI acknowledgment.</strong> AI was used to generate the image in Figure&nbsp;1 and to improve grammar and punctuation.</aside>
+
+<section class="reflection"><h3>Reflection</h3><p class="pending">My reflection on the process and the final product will be added here by Week&nbsp;14.</p></section>
+  </div>
+  <nav class="p-nav" aria-label="More projects">
+    <a href="#events" class="p-prev"><span>Previous</span>Events</a>
+    <a href="#projects" class="p-all">All projects</a>
+    <a href="#instructions" class="p-next"><span>Next</span>Written Instructions</a>
+  </nav>
+</section>
+<section class="page project" data-page="instructions" data-tab="projects" style="--c:var(--coral)" hidden>
+  <a class="back" href="#projects">All projects</a>
+  <div class="band" data-band="instructions"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with a Git branch and a terminal prompt" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M30 14 V86 M30 32 C30 50 66 40 66 62" stroke-width="4.5" vector-effect="non-scaling-stroke"/>
+<g fill="currentColor" stroke="none"><circle cx="30" cy="20" r="7"/><circle cx="30" cy="50" r="7"/><circle cx="30" cy="80" r="7"/></g>
+<circle cx="66" cy="70" r="7.5" style="fill:var(--c)" stroke-width="4" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><polyline points="22,34 42,48 22,62" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/><path d="M50 66 H76" style="stroke:var(--c)" stroke-width="6" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></div>
+  <header class="p-head">
+    <h2 class="p-title">Written Instructions</h2>
+    <p class="p-sub">Initializing a Git repository</p>
+    <p class="p-meta">ENG 220 | Fall 2026 | Five-step procedure</p>
+  </header>
+  
+  
+  <div class="prose">
+
+<h3>Introduction</h3>
+<p>This procedure explains how to set up a Git repository for a programming project. Git is a version control tool that keeps a record of every change made to a project, so you can see what changed, go back to an older version, or share your work with teammates. Setting up a repository is the first thing to do before using Git on any project.</p>
+<p>These instructions are for students who have written code before but have not used Git. To complete this procedure, you need:</p>
+<ul class="needs">
+  <li>a computer with Git installed (free from git-scm.com)</li>
+  <li>a terminal (Git Bash on Windows or Terminal on Mac)</li>
+  <li>a project folder with at least one file in it</li>
+</ul>
+<h3>Procedure</h3>
+<ol class="steps">
+<li><h4><span class="step-n">1</span>Check that Git is installed</h4><p>Open the terminal, type <code>git --version</code> and press Enter. If Git is installed, a version number such as <code>git version 2.45.1</code> will appear. If you get an error saying the command is not recognized, install Git and then close and reopen the terminal.</p></li>
+<li><h4><span class="step-n">2</span>Set your name and email</h4><p>Git saves your name and email with every change you make. Type <code>git config --global user.name "Your Name"</code> and press Enter, then type <code>git config --global user.email "you@example.com"</code> and press Enter. Replace the text inside the quotes with your own name and email.</p><p class="callout note"><strong>Note:</strong> You only need to do this step once on each computer.</p></li>
+<li><h4><span class="step-n">3</span>Go to your project folder</h4><p>Use the <code>cd</code> command to move into your project folder, for example <code>cd Documents/my-project</code>. Type <code>ls</code> (or <code>dir</code> on Windows) to check that your project files are listed.</p><p class="callout caution"><strong>Caution:</strong> Make sure you are inside the project folder and not your Desktop or home folder. Otherwise, Git will try to track all of your personal files.</p></li>
+<li><h4><span class="step-n">4</span>Initialize the repository</h4><p>Type <code>git init</code> and press Enter. Git will reply with a message saying it initialized an empty Git repository. This creates a hidden folder called <code>.git</code> inside your project, which is where Git stores the project history.</p><p class="callout caution"><strong>Caution:</strong> Do not delete or edit the <code>.git</code> folder. Deleting it removes the entire history of the project.</p></li>
+<li><h4><span class="step-n">5</span>Save your first version</h4><p>Type <code>git add .</code> to select all the files in the folder, then type <code>git commit -m "First commit"</code> to save them. This saved version is called a commit. To confirm it worked, type <code>git log</code>. You should see your commit listed with your name, the date, and the message &ldquo;First commit.&rdquo;</p><p class="callout caution"><strong>Caution:</strong> Do not add files that contain passwords or private keys. Once they are committed, they stay in the project history even if you delete them later.</p></li>
+</ol>
+<h3>Conclusion</h3>
+<p>You have now set up a Git repository for your project. To complete the procedure, you checked that Git was installed, set your name and email, moved into the project folder, initialized the repository, and saved your first commit. From now on, you can repeat Step&nbsp;5 whenever you make changes you want to save.</p>
+
+<section class="reflection"><h3>Reflection</h3><p class="pending">My reflection on the process and the final product will be added here by Week&nbsp;14.</p></section>
+  </div>
+  <nav class="p-nav" aria-label="More projects">
+    <a href="#mechanism" class="p-prev"><span>Previous</span>Mechanism Description</a>
+    <a href="#projects" class="p-all">All projects</a>
+    <a href="#video" class="p-next"><span>Next</span>Instructional Video</a>
+  </nav>
+</section>
+<section class="page project" data-page="video" data-tab="projects" style="--c:var(--sand)" hidden>
+  <a class="back" href="#projects">All projects</a>
+  <div class="band" data-band="video"><svg class="cube" viewBox="25 45 150 150" role="img" aria-label="Cube with an AND gate symbol and a play button" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"><path d="M28 28 H50 A22 22 0 0 1 50 72 H28 Z M10 40 H28 M10 60 H28 M72 50 H90" stroke-width="5" vector-effect="non-scaling-stroke"/></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"><polygon points="32,28 72,50 32,72" style="fill:var(--c)" stroke="none"/></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+
+</svg></div>
+  <header class="p-head">
+    <h2 class="p-title">Instructional Video</h2>
+    <p class="p-sub">An AND gate on an Arduino Uno</p>
+    <p class="p-meta">ENG 220 | Fall 2026 | With Zain | 10 slides</p>
+  </header>
+  <div class="prose"><p>The slides from our instructional video on building an AND gate with an Arduino Uno, made with my ENG&nbsp;220 partner, Zain. Two push buttons are the inputs, an LED is the output, and one line of code makes the decision. Each slide shows the narration we wrote for it. Use the arrows or the thumbnails to move through the deck.</p></div>
+  <div class="wide"><div class="deck" data-deck>
+  <div class="deck-stage" tabindex="0" aria-label="Slide viewer. Use the left and right arrow keys to change slides.">
+    <img class="deck-img" src="slides/and-gate-01.jpg" width="1600" height="900" alt="Slide 1: Building an AND Gate with Arduino Uno">
+  </div>
+  <div class="deck-bar">
+    <button type="button" class="deck-btn" data-dir="-1" aria-label="Previous slide"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15,5 8,12 15,19" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+    <p class="deck-count" aria-live="polite"><span class="deck-title">Building an AND Gate with Arduino Uno</span><span class="deck-n">1 / 10</span></p>
+    <button type="button" class="deck-btn" data-dir="1" aria-label="Next slide"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9,5 16,12 9,19" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+  </div>
+  <figure class="narration"><figcaption>Narration &nbsp;|&nbsp; <span class="deck-who">Speaker A</span></figcaption><p class="deck-say">Hi, we&#x27;re Zain and Beshr. In this video we&#x27;ll show you how to build an AND gate with an Arduino Uno. Two push buttons are the inputs, one LED is the output, and by the end you&#x27;ll be able to build and test it yourself.</p></figure>
+  <ol class="deck-thumbs"><li><button type="button" class="thumb" data-go="0" aria-label="Slide 1: Building an AND Gate with Arduino Uno"><img src="slides/thumb-01.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="1" aria-label="Slide 2: What We’re Building"><img src="slides/thumb-02.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="2" aria-label="Slide 3: What You Should Know First"><img src="slides/thumb-03.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="3" aria-label="Slide 4: What You’ll Need"><img src="slides/thumb-04.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="4" aria-label="Slide 5: Before You Plug Anything In"><img src="slides/thumb-05.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="5" aria-label="Slide 6: How the Circuit Works"><img src="slides/thumb-06.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="6" aria-label="Slide 7: One Line of Code Does the Logic"><img src="slides/thumb-07.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="7" aria-label="Slide 8: Check Your Result"><img src="slides/thumb-08.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="8" aria-label="Slide 9: One Circuit, Three Gates"><img src="slides/thumb-09.jpg" width="320" height="180" alt="" loading="lazy"></button></li><li><button type="button" class="thumb" data-go="9" aria-label="Slide 10: Sources"><img src="slides/thumb-10.jpg" width="320" height="180" alt="" loading="lazy"></button></li></ol>
+  <script type="application/json" class="deck-data">[{"src": "slides/and-gate-01.jpg", "title": "Building an AND Gate with Arduino Uno", "who": "Speaker A", "say": "Hi, we're Zain and Beshr. In this video we'll show you how to build an AND gate with an Arduino Uno. Two push buttons are the inputs, one LED is the output, and by the end you'll be able to build and test it yourself."}, {"src": "slides/and-gate-02.jpg", "title": "What We’re Building", "who": "Speaker B", "say": "An AND gate has two inputs and one output, and the output is on only when both inputs are on. In the table, only the last row turns the LED on. Factories use the same idea for safety: a two-hand press only runs while both of the worker's hands are on its buttons."}, {"src": "slides/and-gate-03.jpg", "title": "What You Should Know First", "who": "Speaker A", "say": "A few basics first. The Arduino reads every input as a 1 or a 0. On a breadboard, the rails carry power along the board, and each column of five holes is connected. A resistor limits current. And you'll need to know how to upload code from the Arduino IDE."}, {"src": "slides/and-gate-04.jpg", "title": "What You’ll Need", "who": "Speaker B", "say": "Here's what you need. The wire colors on screen match the video, so you can follow along as you build. If you don't have a 510 ohm resistor, a 1k works too."}, {"src": "slides/and-gate-05.jpg", "title": "Before You Plug Anything In", "who": "Speaker A", "say": "Before you plug anything in: keep the USB cable unplugged while you wire, never connect 5 volts straight to ground, and always use the resistor with the LED. The two most common mistakes are putting the LED in backwards and using the wrong legs on the button. Use two legs that are diagonal from each other."}, {"src": "slides/and-gate-06.jpg", "title": "How the Circuit Works", "who": "Speaker B", "say": "Here's the whole circuit. Pressing a button connects 5 volts to its pin. When it's released, the 10k pull-down resistor keeps the pin at zero, so it doesn't float and read random values. Pin 13 drives the LED through 510 ohms. The AND decision itself happens in code."}, {"src": "slides/and-gate-07.jpg", "title": "One Line of Code Does the Logic", "who": "Speaker A", "say": "In setup, pins 2 and 3 become inputs and pin 13 the output. The loop reads both buttons over and over. The highlighted line is the AND gate: the two ampersands mean AND, so y is 1 only when a and b are both 1."}, {"src": "slides/and-gate-08.jpg", "title": "Check Your Result", "who": "Speaker B", "say": "Now test every case. Nothing pressed, A only, B only: the LED stays off. Press both and it turns on, just like the truth table. If it doesn't, the three most common fixes are on the right."}, {"src": "slides/and-gate-09.jpg", "title": "One Circuit, Three Gates", "who": "Speaker A", "say": "So that's an AND gate. Here's a challenge: without moving a single wire, you can turn it into an OR gate or a NAND gate by changing just one line of code. Give it a try. Thanks for watching!"}, {"src": "slides/and-gate-10.jpg", "title": "Sources", "who": "Speaker B", "say": "Our sources are listed here."}]</script>
+</div></div>
+  <div class="prose">
+
+<section class="reflection"><h3>Reflection</h3><p class="pending">My reflection on the process and the final product will be added here by Week&nbsp;14.</p></section>
+  </div>
+  <nav class="p-nav" aria-label="More projects">
+    <a href="#instructions" class="p-prev"><span>Previous</span>Written Instructions</a>
+    <a href="#projects" class="p-all">All projects</a>
+    <a href="#proposal" class="p-next"><span>Next</span>Innovation Proposal</a>
+  </nav>
+</section>
+<section class="page project" data-page="proposal" data-tab="projects" style="--c:var(--sea)" hidden>
+  <a class="back" href="#projects">All projects</a>
+  <div class="band" data-band="proposal"><svg class="cube" viewBox="25 23 150 150" role="img" aria-label="Open cube with an arrow rising out of it" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"><rect x="22" y="22" width="56" height="56" fill="currentColor" stroke="none"/></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+<path d="M100 92 V16" stroke-width="8"/><polyline points="80,36 100,14 120,36" stroke-width="8"/>
+</svg></div>
+  <header class="p-head">
+    <h2 class="p-title">Innovation Proposal</h2>
+    <p class="p-sub">In progress</p>
+    <p class="p-meta">ENG 220 | Fall 2026</p>
+  </header>
+  
+  
+  <div class="prose">
+<p class="pending">The final draft of my innovation proposal will be posted here in Week&nbsp;14.</p>
+
+  </div>
+  <nav class="p-nav" aria-label="More projects">
+    <a href="#video" class="p-prev"><span>Previous</span>Instructional Video</a>
+    <a href="#projects" class="p-all">All projects</a>
+    <a href="#events" class="p-next"><span>Next</span>Events</a>
+  </nav>
+</section>
+<section class="page project" data-page="events" data-tab="projects" style="--c:var(--pistachio)" hidden>
+  <a class="back" href="#projects">All projects</a>
+  <div class="band" data-band="events"><svg class="cube" viewBox="25 16 150 150" role="img" aria-label="Cube used as a podium with a microphone" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="100,120 154,89 154,151 100,182" fill="currentColor" stroke="none"/>
+<g transform="matrix(.54 .31 0 .62 46 89)"></g>
+<g transform="matrix(.54 -.31 0 .62 100 120)"></g>
+<g transform="matrix(.54 -.31 .54 .31 46 89)"><circle cx="50" cy="50" r="17" fill="currentColor" stroke="none"/></g>
+<path d="M100 120 L46 89 M100 120 L154 89 M100 120 V182" stroke-width="4"/>
+<polygon points="100,58 154,89 154,151 100,182 46,151 46,89" stroke-width="7"/>
+<path d="M100 89 V44" stroke-width="6"/><path d="M80 22 Q80 46 100 46 Q120 46 120 22" stroke-width="5"/>
+<rect x="88" y="-4" width="24" height="38" rx="12" fill="currentColor" stroke="none"/>
+<path d="M93 6 H107 M93 14 H107 M93 22 H107" style="stroke:var(--c)" stroke-width="3"/>
+</svg></div>
+  <header class="p-head">
+    <h2 class="p-title">Events</h2>
+    <p class="p-sub">Consulting workshop: breaking a case</p>
+    <p class="p-meta">Event reflection | Fall 2026</p>
+  </header>
+  
+  
+  <div class="prose">
+
+<p>This semester I attended a consulting workshop on how to break a case: how to take a business problem I had never seen before and turn it into a plan I could actually work through.</p>
+<h3>What I learned</h3>
+<ul class="learn">
+  <li><strong>Start with the question.</strong> Restate the problem and ask clarifying questions until it is clear what the client needs to decide.</li>
+  <li><strong>Build a structure.</strong> Split the problem into a few parts that don&rsquo;t overlap and together cover everything. A profit problem, for example, splits into revenue and costs, and each of those splits again.</li>
+  <li><strong>Lead with a hypothesis.</strong> Pick the most likely answer early and use the data to test it, instead of collecting everything first.</li>
+  <li><strong>End with a recommendation.</strong> Close with one clear answer, the reasons behind it, and the main risks.</li>
+</ul>
+
+
+  </div>
+  <nav class="p-nav" aria-label="More projects">
+    <a href="#proposal" class="p-prev"><span>Previous</span>Innovation Proposal</a>
+    <a href="#projects" class="p-all">All projects</a>
+    <a href="#mechanism" class="p-next"><span>Next</span>Mechanism Description</a>
+  </nav>
+</section>
+  </main>
+
+  <footer class="foot wrap">Mohamad Beshr Alsioufy &nbsp;|&nbsp; ENG 220 e-portfolio &nbsp;|&nbsp; Fall 2026</footer>
+</div>
+<script>
+(function(){
+  var PROJ = ["mechanism","instructions","video","proposal","events"];
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids = pages.map(function(p){ return p.dataset.page; });
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tabs a"));
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var current = null;
+
+  function pageEl(id){ return document.querySelector('.page[data-page="'+id+'"]'); }
+  function tileIn(page, id){ return document.querySelector('.page[data-page="'+page+'"] [data-tile="'+id+'"]'); }
+  function bandOf(id){ return document.querySelector('[data-band="'+id+'"]'); }
+  function name(el){ if(!el) return; el.style.viewTransitionName = "hero-bg"; var s = el.querySelector(".cube"); if(s) s.style.viewTransitionName = "hero-icon"; }
+  function clearNames(){ document.querySelectorAll("[data-tile],[data-band],.cube").forEach(function(el){ el.style.viewTransitionName = ""; }); }
+  function parse(){ var h = location.hash.replace(/^#/, ""); return ids.indexOf(h) > -1 ? h : "home"; }
+  function isProj(id){ return PROJ.indexOf(id) > -1; }
+  function jump(y){ window.scrollTo({ top:y, behavior:"instant" }); }
+
+  function render(id, from, morphOut){
+    pages.forEach(function(p){ p.hidden = p.dataset.page !== id; });
+    var tab = pageEl(id).dataset.tab || id;
+    tabs.forEach(function(a){ if (a.getAttribute("href") === "#" + tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    if (morphOut){ var t = tileIn(id, from); if (t) t.scrollIntoView({ block:"center", behavior:"instant" }); }
+    else if (from !== null) jump(0);
+    current = id;
+  }
+
+  function route(){
+    var id = parse(), from = current;
+    if (from === null || from === id){ render(id, from, false); return; }
+    var morphIn = isProj(id) && (from === "home" || from === "projects");
+    var morphOut = isProj(from) && (id === "home" || id === "projects");
+    clearNames();
+    if (morphIn) name(tileIn(from, id));
+    if (morphOut) name(bandOf(from));
+    var update = function(){
+      clearNames();
+      render(id, from, morphOut);
+      if (morphIn) name(bandOf(id));
+      if (morphOut) name(tileIn(id, from));
+    };
+    if (document.startViewTransition && !reduce){
+      var vt = document.startViewTransition(update);
+      vt.finished.then(clearNames, clearNames);
+    } else update();
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  document.querySelectorAll("[data-deck]").forEach(function(deck){
+    var data = JSON.parse(deck.querySelector(".deck-data").textContent);
+    var img = deck.querySelector(".deck-img"), stage = deck.querySelector(".deck-stage");
+    var titleEl = deck.querySelector(".deck-title"), nEl = deck.querySelector(".deck-n");
+    var whoEl = deck.querySelector(".deck-who"), sayEl = deck.querySelector(".deck-say");
+    var prev = deck.querySelector('[data-dir="-1"]'), next = deck.querySelector('[data-dir="1"]');
+    var thumbs = Array.prototype.slice.call(deck.querySelectorAll(".thumb"));
+    var i = 0;
+    function show(k){
+      if (k < 0 || k >= data.length || k === i && img.getAttribute("src") === data[k].src) return;
+      i = k; var d = data[k];
+      img.classList.add("swap");
+      var pre = new Image();
+      pre.onload = pre.onerror = function(){ img.src = d.src; img.alt = "Slide " + (k + 1) + ": " + d.title; img.classList.remove("swap"); };
+      pre.src = d.src;
+      titleEl.textContent = d.title; nEl.textContent = (k + 1) + " / " + data.length;
+      whoEl.textContent = d.who; sayEl.textContent = d.say;
+      prev.disabled = k === 0; next.disabled = k === data.length - 1;
+      thumbs.forEach(function(t, j){ t.setAttribute("aria-current", j === k ? "true" : "false"); });
+      if (k + 1 < data.length){ var nx = new Image(); nx.src = data[k + 1].src; }
+    }
+    prev.addEventListener("click", function(){ show(i - 1); });
+    next.addEventListener("click", function(){ show(i + 1); });
+    thumbs.forEach(function(t){ t.addEventListener("click", function(){ show(+t.dataset.go); }); });
+    document.addEventListener("keydown", function(e){
+      if (deck.closest(".page").hidden) return;
+      var tag = (e.target && e.target.tagName) || "";
+      if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+      if (e.key === "ArrowRight"){ show(i + 1); }
+      else if (e.key === "ArrowLeft"){ show(i - 1); }
+    });
+    var x0 = null;
+    stage.addEventListener("touchstart", function(e){ x0 = e.touches[0].clientX; }, { passive:true });
+    stage.addEventListener("touchend", function(e){ if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+    prev.disabled = true;
+    thumbs[0].setAttribute("aria-current", "true");
+  });
+
+  document.querySelectorAll("[data-copy]").forEach(function(btn){
+    var original = btn.textContent;
+    btn.addEventListener("click", function(){
+      var target = document.getElementById(btn.getAttribute("data-target"));
+      var done = function(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = original; }, 1800); };
+      var fallback = function(){
+        if (!target) return done("Select the address");
+        var sel = window.getSelection(), range = document.createRange();
+        range.selectNodeContents(target); sel.removeAllRanges(); sel.addRange(range); done("Selected");
+      };
+      try { navigator.clipboard.writeText(btn.getAttribute("data-copy")).then(function(){ done("Copied"); }, fallback); } catch(e){ fallback(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
